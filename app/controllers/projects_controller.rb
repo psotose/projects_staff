@@ -5,11 +5,16 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
+    @staffs = Staff.all
+    if params[:q].present?
+      @staffs = @staffs.where("name LIKE ?", "%" + params[:q] + "%")
+    end
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @available_staff = @project.available_staff
   end
 
   # GET /projects/new

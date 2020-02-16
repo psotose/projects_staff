@@ -4,6 +4,19 @@
   <strong>Name:</strong>
   <%= @project.name %>
 </p>
+<p>
+  <strong>Workers</strong>
+</p>
+<% @project.staffs.each do |staff| %>
+  <%= staff.name %>
+  <%= link_to  "Remover", delete_staff_path(@project, staff), method: :delete %>
+  <br>
+<% end %>
+
+<%= form_with(model: @project.staffs.build, url: assign_staff_path(@project), local: true) do |form| %>
+  <%= form.select(:staff_id, options_for_select(@available_staff)) %>
+  <%= form.submit%>
+<% end %>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

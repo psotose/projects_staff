@@ -5,6 +5,9 @@ class StaffsController < ApplicationController
   # GET /staffs.json
   def index
     @staffs = Staff.all
+    if params[:q].present?
+      @staffs = @staffs.where('staff.project = ? OR staff.name = ?', params[:q])
+    end
   end
 
   # GET /staffs/1
