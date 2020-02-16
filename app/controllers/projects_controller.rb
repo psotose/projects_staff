@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
     @projects = Project.all
     @staffs = Staff.all
     if params[:q].present?
-      @staffs = @staffs.where("name LIKE ?", "%" + params[:q] + "%")
+      @projects= @projects.where("name LIKE ?", "%" + params[:q] + "%")
     end
   end
 

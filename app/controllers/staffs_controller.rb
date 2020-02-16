@@ -6,8 +6,8 @@ class StaffsController < ApplicationController
   def index
     @staffs = Staff.all
     if params[:q].present?
-      @staffs = @staffs.where('staff.project = ? OR staff.name = ?', params[:q])
-    end
+      @staffs = @staffs.where("name LIKE ?", "%" + params[:q] + "%")
+    end  
   end
 
   # GET /staffs/1
